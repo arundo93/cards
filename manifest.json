@@ -4,8 +4,8 @@
     "lang": "ru",
     "start_url": "./",
     "display": "standalone",
-    "theme_color": "#FFFFFF",
-    "background_color": "#FFFFFF",
+    "theme_color": "#420285",
+    "background_color": "#420285",
     "icons": [
       {
         "src": "img/android-icon-36x36.png",
