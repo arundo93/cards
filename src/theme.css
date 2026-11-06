@@ -1,0 +1,74 @@
+/* App palette stays available before React mounts. Gravity receives the same
+   values on its root (including dialogs/portals attached to document.body). */
+:root {
+  --dc-color-background: #f6f5f1;
+  --dc-color-surface: #fffefa;
+  --dc-color-sidebar: #f0efea;
+  --dc-color-border: #e5e7dd;
+  --dc-color-focus: #b9432c;
+  --dc-font-family: "Inter Variable", Inter, Arial, sans-serif;
+}
+
+/* ThemeProvider sets this class on body. Higher specificity than .g-root keeps
+   the app theme stable regardless of component stylesheet injection order. */
+.g-root.discount-cards-theme {
+  --g-font-family-sans: var(--dc-font-family);
+  --g-text-display-font-weight: 550;
+  --g-text-header-font-weight: 550;
+  --g-text-subheader-font-weight: 550;
+  --g-text-display-3-line-height: 46px;
+  --g-text-display-2-line-height: 38px;
+  --g-text-display-1-line-height: 36px;
+  --g-text-body-1-line-height: 21px;
+  --g-text-body-2-line-height: 24px;
+  --g-text-caption-2-line-height: 18px;
+
+  --g-border-radius-xs: 4px;
+  --g-border-radius-s: 6px;
+  --g-border-radius-m: 8px;
+  --g-border-radius-l: 12px;
+  --g-border-radius-xl: 14px;
+
+  --g-color-base-background: var(--dc-color-background);
+  --g-color-base-float: var(--dc-color-surface);
+  --g-color-base-modal: var(--dc-color-surface);
+  --g-color-base-brand: #bd4933;
+  --g-color-base-brand-hover: #a43b28;
+  --g-color-base-selection: #e8eae2;
+  --g-color-base-selection-hover: #dde3d5;
+  --g-color-base-generic: #eef0e8;
+  --g-color-base-generic-hover: #e5e9dc;
+  --g-color-base-generic-accent-disabled: #eceee7;
+  --g-color-base-simple-hover: #e8ece1;
+  --g-color-base-simple-hover-solid: #e8ece1;
+  --g-color-base-positive-light: #edf2e8;
+  --g-color-base-danger-light: #fff0eb;
+
+  --g-color-text-primary: #272c29;
+  --g-color-text-complementary: #525e49;
+  --g-color-text-secondary: #697260;
+  --g-color-text-hint: #8b9381;
+  --g-color-text-brand: #b9432c;
+  --g-color-text-brand-heavy: #a43b28;
+  --g-color-text-brand-contrast: #fff;
+  --g-color-text-link: #b9432c;
+  --g-color-text-link-hover: #a43b28;
+  --g-color-text-positive: #5d7054;
+  --g-color-text-danger: #aa432c;
+
+  --g-color-line-generic: #d8ddcf;
+  --g-color-line-generic-solid: #d8ddcf;
+  --g-color-line-generic-hover: #bac4ae;
+  --g-color-line-generic-active: #8b9a7b;
+  --g-color-line-generic-accent: #cbd3c0;
+  --g-color-line-generic-accent-hover: #98a58a;
+  --g-color-line-brand: #d95c43;
+  --g-color-line-focus: var(--dc-color-focus);
+  --g-color-line-danger: #c25840;
+
+  /* Public control hooks; state colors still come from Gravity so disabled,
+     error, hover and focus states retain the component's own behavior. */
+  --g-text-input-border-radius: 10px;
+  --g-text-area-border-radius: 10px;
+  --g-button-focus-outline-offset: 3px;
+}

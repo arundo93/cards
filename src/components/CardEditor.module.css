@@ -1,0 +1,136 @@
+.muted {
+  color: var(--g-color-text-hint);
+}
+
+.editor-form {
+  display: grid;
+  gap: 18px;
+}
+
+.editor-form label {
+  display: grid;
+  gap: 7px;
+  font-size: 12px;
+  color: #5b6552;
+}
+
+.editor-form label .muted {
+  display: contents;
+}
+
+.editor-form select {
+  background: var(--dc-color-surface);
+  border: 1px solid var(--g-color-line-generic);
+  border-radius: 10px;
+  padding: 11px 8px;
+  font-size: 12px;
+  color: #46553a;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.color-picker {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 12px;
+}
+
+.color-picker legend {
+  font-size: 12px;
+  color: #5b6552;
+  margin-bottom: 10px;
+}
+
+.color-picker button {
+  border: 3px solid transparent;
+  border-radius: 50%;
+  height: 32px;
+  width: 32px;
+  color: white;
+  font-size: var(--g-text-body-2-font-size);
+}
+
+.color-picker button.selected {
+  outline: 1px solid #626d57;
+  outline-offset: 3px;
+}
+
+.editor-preview {
+  max-height: 150px;
+  overflow: auto;
+  padding: 10px;
+  background: white;
+  border-radius: 10px;
+}
+
+@media (max-width: 800px) {
+  .editor-form select {
+    font-size: var(--g-text-caption-2-font-size);
+  }
+}
+
+@media (max-width: 380px) {
+  .color-picker {
+    gap: 10px;
+  }
+}
+
+.card-source {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  min-width: 0;
+}
+
+.card-source legend {
+  font-size: 12px;
+  color: #5b6552;
+  margin-bottom: 9px;
+}
+
+.source-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5px;
+  padding: 4px;
+  background: #f0f1e9;
+  border-radius: 12px;
+}
+
+.editor-form .source-option {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 11px 8px;
+  border-radius: 9px;
+  cursor: pointer;
+}
+
+.source-option.selected {
+  background: var(--dc-color-surface);
+  box-shadow: 0 1px 5px #1f2e1610;
+  color: #344b2c;
+}
+
+.source-option input {
+  accent-color: var(--g-color-base-brand);
+  margin: 0;
+}
+
+.preset-hint {
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--g-color-text-positive);
+  padding: 12px;
+  background: var(--g-color-base-positive-light);
+  border-radius: 10px;
+  margin: 0;
+}
+
+.color-picker {
+  flex-wrap: wrap;
+}

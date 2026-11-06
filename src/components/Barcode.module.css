@@ -1,0 +1,62 @@
+.dc-barcode {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-width: 0;
+  padding: 18px;
+  border-radius: 16px;
+  background: white;
+  color: #1f241b;
+}
+
+.dc-barcode canvas {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  image-rendering: pixelated;
+}
+
+.dc-barcode canvas[hidden] {
+  display: none;
+}
+
+.dc-barcode--qr canvas {
+  max-width: min(100%, 220px);
+}
+
+.dc-barcode--large {
+  padding: 24px;
+}
+
+.dc-barcode--large.dc-barcode--qr canvas {
+  max-width: min(100%, 320px);
+}
+
+.dc-barcode__value {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  text-align: center;
+  font-size: var(--g-text-body-1-font-size);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.08em;
+}
+
+.dc-barcode__error {
+  margin: 0;
+  color: #a1372a;
+  font-size: var(--g-text-body-1-font-size);
+  text-align: center;
+}
+
+.compact {
+  padding: 8px;
+}
+
+.compact:not(.dc-barcode--qr) canvas {
+  max-height: 78px;
+  max-width: 100%;
+  width: auto;
+  object-fit: contain;
+}

@@ -1,0 +1,13 @@
+.settings-install {
+  max-width: 680px;
+  margin: 0 auto 20px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.settings-install > span {
+  font-size: var(--g-text-caption-2-font-size);
+  color: var(--g-color-text-hint);
+}

@@ -1,0 +1,63 @@
+/* Global document reset only. Theme tokens live in theme.css; UI styles are
+   owned by colocated CSS Modules. */
+html {
+  scrollbar-gutter: stable;
+  background: var(--dc-color-background);
+  font-family: var(--dc-font-family);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+}
+body.g-root {
+  background: var(--dc-color-background);
+  color: var(--g-color-text-primary);
+}
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+button {
+  cursor: pointer;
+}
+button:disabled {
+  cursor: default;
+}
+button:focus-visible,
+a:focus-visible,
+select:focus-visible {
+  outline: 3px solid var(--dc-color-focus);
+  outline-offset: 4px;
+}
+a {
+  color: inherit;
+}
+h1,
+h2,
+h3,
+p {
+  margin-top: 0;
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    /* biome-ignore lint/complexity/noImportantStyles: User reduced-motion preference overrides component animation. */
+    animation: none !important;
+    /* biome-ignore lint/complexity/noImportantStyles: Respect reduced-motion preference globally. */
+    scroll-behavior: auto !important;
+    /* biome-ignore lint/complexity/noImportantStyles: Respect reduced-motion preference globally. */
+    transition: none !important;
+  }
+}
