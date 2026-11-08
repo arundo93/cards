@@ -1,4 +1,5 @@
-import { Button, Text } from "@gravity-ui/uikit";
+import { Magnifier, Plus } from "@gravity-ui/icons";
+import { Button, Icon, Text } from "@gravity-ui/uikit";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { useWallet } from "../context/WalletContext";
@@ -12,7 +13,7 @@ export function WalletEmpty({ filtered = false }: { filtered?: boolean }) {
     return (
       <div className={shared["empty-state"]}>
         <span className={styles["empty-symbol"]} aria-hidden="true">
-          ⌕
+          <Icon data={Magnifier} size={32} />
         </span>
         <Text as="h2" variant="display-1">
           {t("pages.empty.not-found")}
@@ -57,7 +58,7 @@ export function WalletEmpty({ filtered = false }: { filtered?: boolean }) {
           navigate("/cards/new", { state: { walletDialog: true } })
         }
       >
-        ＋ {t("pages.empty.add-first")}
+        <Icon data={Plus} size={18} /> {t("pages.empty.add-first")}
       </Button>
     </div>
   );

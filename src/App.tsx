@@ -3,7 +3,6 @@ import { PwaProvider } from "./context/PwaContext";
 import { WalletProvider } from "./context/WalletContext";
 import { AppShell } from "./layouts/AppShell";
 import { CardEditorPage } from "./pages/CardEditorPage";
-import { CheckoutPage } from "./pages/CheckoutPage";
 import { DeleteCardPage } from "./pages/DeleteCardPage";
 import { NotFoundPage } from "./pages/NotFoundPage";
 import { SettingsPage } from "./pages/SettingsPage";
@@ -19,7 +18,6 @@ export default function App() {
                 <Route path="cards/new" element={<CardEditorPage create />} />
                 <Route path="cards/:id/edit" element={<CardEditorPage />} />
                 <Route path="cards/:id/delete" element={<DeleteCardPage />} />
-                <Route path="cards/:id" element={<CheckoutPage />} />
               </Route>
               <Route path="settings" element={<SettingsPage />} />
               <Route path="*" element={<NotFoundPage />} />

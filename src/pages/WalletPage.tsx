@@ -1,4 +1,5 @@
-import { Button, Text } from "@gravity-ui/uikit";
+import { Plus } from "@gravity-ui/icons";
+import { Button, Icon, Text } from "@gravity-ui/uikit";
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { Outlet, useNavigate } from "react-router-dom";
@@ -44,7 +45,7 @@ export function WalletPage() {
               navigate("/cards/new", { state: { walletDialog: true } })
             }
           >
-            <span className={styles.plus}>＋</span> {t("pages.wallet.add")}
+            <Icon data={Plus} size={18} /> {t("pages.wallet.add")}
           </Button>
         }
       />
@@ -68,11 +69,7 @@ export function WalletPage() {
                 cards={filtered}
                 activeId={current.id}
                 onSelect={setActiveId}
-                onOpen={(card) =>
-                  navigate(`/cards/${encodeURIComponent(card.id)}`, {
-                    state: { walletDialog: true },
-                  })
-                }
+                onOpen={(card) => setActiveId(card.id)}
               />
               <CardDetails card={current} />
             </>
@@ -83,17 +80,6 @@ export function WalletPage() {
       ) : (
         <WalletEmpty />
       )}
-      <footer className={styles["wallet-footer"]}>
-        <Text as="span" variant="inherit">
-          <span className={styles["small-lock"]} aria-hidden="true">
-            ▧
-          </span>{" "}
-          {t("pages.wallet.local-only")}
-        </Text>
-        <Text as="span" variant="inherit">
-          {t("pages.wallet.available-offline")}
-        </Text>
-      </footer>
       <Outlet />
     </>
   );

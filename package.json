@@ -21,7 +21,8 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-i18next": "^17.1.13",
-    "react-router-dom": "^7.18.5"
+    "react-router-dom": "^7.18.5",
+    "yup": "^1.7.1"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.5.11",

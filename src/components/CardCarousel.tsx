@@ -1,4 +1,5 @@
-import { Text } from "@gravity-ui/uikit";
+import { ChevronLeft, ChevronRight, QrCode, StarFill } from "@gravity-ui/icons";
+import { Icon, Text } from "@gravity-ui/uikit";
 import {
   type CSSProperties,
   type KeyboardEvent,
@@ -34,26 +35,6 @@ function cardInk(color: string) {
   return (luminance + 0.05) / 0.07 > 1.05 / (luminance + 0.05)
     ? "#252822"
     : "#ffffff";
-}
-
-function Arrow({ direction }: { direction: "left" | "right" }) {
-  return (
-    <svg
-      width="20"
-      height="20"
-      viewBox="0 0 24 24"
-      fill="none"
-      aria-hidden="true"
-    >
-      <path
-        d={direction === "left" ? "M14 6l-6 6 6 6" : "M10 6l6 6-6 6"}
-        stroke="currentColor"
-        strokeWidth="1.7"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
 }
 
 function CarouselTrack({
@@ -272,7 +253,7 @@ function CarouselTrack({
                     className={styles["dc-card__favorite"]}
                     aria-hidden="true"
                   >
-                    ★
+                    <Icon data={StarFill} size={18} />
                   </span>
                 )}
               </span>
@@ -293,21 +274,11 @@ function CarouselTrack({
                     ? t("components.carousel.qr-card")
                     : card.number}
                 </Text>
-                <svg
+                <Icon
                   className={styles["dc-card__scan"]}
-                  width="25"
-                  height="25"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  aria-hidden="true"
-                >
-                  <path
-                    d="M8 3H4a1 1 0 00-1 1v4m13-5h4a1 1 0 011 1v4M3 16v4a1 1 0 001 1h4m8 0h4a1 1 0 001-1v-4M8 8v8m4-8v8m4-8v8"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                  />
-                </svg>
+                  data={QrCode}
+                  size={24}
+                />
               </span>
             </button>
           ),
@@ -322,7 +293,7 @@ function CarouselTrack({
           onKeyDown={handleKey}
           aria-label={t("components.carousel.previous")}
         >
-          <Arrow direction="left" />
+          <Icon data={ChevronLeft} size={20} />
         </button>
         <Text
           as="span"
@@ -346,12 +317,9 @@ function CarouselTrack({
           onKeyDown={handleKey}
           aria-label={t("components.carousel.next")}
         >
-          <Arrow direction="right" />
+          <Icon data={ChevronRight} size={20} />
         </button>
       </div>
-      <Text as="p" variant="caption-2" className={styles["dc-carousel__hint"]}>
-        {t("components.carousel.hint")}
-      </Text>
     </section>
   );
 }

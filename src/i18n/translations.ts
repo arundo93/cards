@@ -67,7 +67,6 @@ export const translations = {
   "components.carousel.qr-card": "QR-карта",
   "components.carousel.previous": "Предыдущая карта",
   "components.carousel.next": "Следующая карта",
-  "components.carousel.hint": "Нажмите на карту, чтобы показать код",
   "editor.create-title": "Новая карта",
   "editor.edit-title": "Изменить карту",
   "editor.description": "Выберите магазин или укажите тип кода самостоятельно.",
@@ -92,7 +91,8 @@ export const translations = {
   "editor.formats.qr": "QR-код",
   "editor.hints.code128":
     "Латинские буквы, цифры и знаки. Сверьте формат с исходной картой.",
-  "editor.hints.ean13": "13 цифр, включая контрольную.",
+  "editor.hints.ean13":
+    "12 или 13 цифр. Если контрольной цифры нет, мы рассчитаем её.",
   "editor.hints.qr": "Номер, текст или ссылка с вашей карты.",
   "editor.category": "Категория",
   "editor.color": "Цвет карты",
@@ -112,7 +112,7 @@ export const translations = {
   "errors.number-label": "Номер карты",
   "errors.unknown-format": "Неизвестный формат кода.",
   "errors.invalid-ean13":
-    "EAN-13: нужны 13 цифр с правильной контрольной суммой.",
+    "EAN-13: нужны 12 цифр либо 13 цифр с правильной контрольной суммой.",
   "errors.color-label": "Цвет",
   "errors.invalid-color": "Некорректный цвет карты.",
   "errors.category-label": "Категория",
@@ -196,13 +196,12 @@ export const translations = {
   "pages.wallet.all": "Все карты",
   "pages.wallet.favorites": "Избранное",
   "pages.wallet.search": "Найти карту",
-  "pages.wallet.collection": "ВАШ МАЛЕНЬКИЙ НАБОР ПРИВИЛЕГИЙ",
+  "pages.wallet.collection": "КАРТЫ",
   "pages.wallet.selected": "Выбранная карта",
   "pages.wallet.remove-favorite": "Убрать из избранного",
   "pages.wallet.add-favorite": "В избранное",
   "pages.wallet.copy-label": "Скопировать номер карты",
   "pages.wallet.copy": "Копировать номер",
-  "pages.wallet.checkout": "Показать на кассе",
   "pages.wallet.edit": "Изменить",
   "pages.wallet.delete": "Удалить",
   "pages.wallet.local-only": "Только на вашем устройстве",
@@ -221,9 +220,6 @@ export const translations = {
   "pages.settings.title": "Хранение и настройки",
   "pages.settings.subtitle": "Спокойно за данные. Свободно от аккаунтов.",
   "pages.settings.shortcut": "Быстрый доступ с главного экрана",
-  "pages.checkout.hint": "ПОКАЖИТЕ КОД КАССИРУ",
-  "pages.checkout.brightness":
-    "Увеличьте яркость экрана, чтобы код легче считывался.",
   "pages.delete.title": "Удалить карту?",
   "pages.delete.description":
     "Карта «{{name}}» будет удалена с этого устройства. Восстановить её можно из резервной копии.",

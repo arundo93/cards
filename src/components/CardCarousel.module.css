@@ -262,6 +262,13 @@
 }
 
 @media (max-width: 600px) {
+  .dc-carousel {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
   .dc-carousel__stage {
     --card-spacing: 124px;
     height: 270px;
@@ -323,6 +330,7 @@
 
   .dc-card {
     top: 24px;
+    width: min(340px, calc(100vw - 24px));
   }
 
   .dc-carousel__hint {
@@ -333,5 +341,14 @@
   .dc-carousel__arrow {
     width: 36px;
     height: 36px;
+  }
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .dc-card:focus,
+  .dc-card:focus-visible,
+  .dc-carousel__arrow:focus,
+  .dc-carousel__arrow:focus-visible {
+    outline: none;
   }
 }

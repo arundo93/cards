@@ -1,5 +1,5 @@
-import { Magnifier } from "@gravity-ui/icons";
-import { Text, TextInput } from "@gravity-ui/uikit";
+import { Magnifier, Star } from "@gravity-ui/icons";
+import { Icon, Text, TextInput } from "@gravity-ui/uikit";
 import { useTranslation } from "react-i18next";
 import { useWallet, type WalletFilter } from "../context/WalletContext";
 import { categoryLabel } from "../lib/categories";
@@ -44,7 +44,7 @@ export function WalletTools() {
               aria-pressed={selected}
               onClick={() => setFilter(tab.filter)}
             >
-              {tab.id === "favorites" ? "☆ " : ""}
+              {tab.id === "favorites" && <Icon data={Star} size={14} />}
               {tab.label}
               {tab.id === "all" && (
                 <Text variant="caption-1">

@@ -1,5 +1,10 @@
-import { Gear, Wallet } from "@gravity-ui/icons";
-import { Text } from "@gravity-ui/uikit";
+import {
+  ArrowUpRightFromSquare,
+  CreditCard,
+  Gear,
+  Wallet,
+} from "@gravity-ui/icons";
+import { Icon, Text } from "@gravity-ui/uikit";
 import { useTranslation } from "react-i18next";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { usePwa } from "../context/PwaContext";
@@ -58,7 +63,7 @@ export function Sidebar() {
       </nav>
       <div className={styles["sidebar-bottom"]}>
         <div className={styles["tiny-card-icon"]} aria-hidden="true">
-          ▱
+          <Icon data={CreditCard} size={20} />
         </div>
         <Text as="h3" variant="subheader-2">
           {t("pages.shell.less-plastic")}
@@ -75,7 +80,8 @@ export function Sidebar() {
           className={styles["install-link"]}
           onClick={() => void installApp()}
         >
-          {t("pages.shell.install")} <span>↗</span>
+          {t("pages.shell.install")}{" "}
+          <Icon data={ArrowUpRightFromSquare} size={14} />
         </Text>
         <Text as="div" variant="caption-2" className={styles["local-status"]}>
           <span className={shared["status-dot"]} />

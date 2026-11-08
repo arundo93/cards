@@ -1,5 +1,5 @@
-import { configure, ThemeProvider } from "@gravity-ui/uikit";
-import React from "react";
+import { configure, MobileProvider, ThemeProvider } from "@gravity-ui/uikit";
+import React, { type ReactNode, useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 import { I18nextProvider } from "react-i18next";
 import { appI18n, normalizeLocale } from "./i18n";
@@ -21,11 +21,27 @@ if (import.meta.hot)
 
 const root = document.getElementById("root");
 if (!root) throw new Error("Missing root element");
+
+function ResponsiveGravity({ children }: { children: ReactNode }) {
+  const [mobile, setMobile] = useState(
+    () => window.matchMedia("(max-width: 600px)").matches,
+  );
+  useEffect(() => {
+    const media = window.matchMedia("(max-width: 600px)");
+    const update = () => setMobile(media.matches);
+    media.addEventListener("change", update);
+    return () => media.removeEventListener("change", update);
+  }, []);
+  return <MobileProvider mobile={mobile}>{children}</MobileProvider>;
+}
+
 ReactDOM.createRoot(root).render(
   <React.StrictMode>
     <I18nextProvider i18n={appI18n}>
       <ThemeProvider theme="light" rootClassName="discount-cards-theme">
-        <App />
+        <ResponsiveGravity>
+          <App />
+        </ResponsiveGravity>
       </ThemeProvider>
     </I18nextProvider>
   </React.StrictMode>,

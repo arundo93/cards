@@ -1,5 +1,10 @@
 import { describe, expect, it } from "vitest";
-import { type DiscountCard, isValidEAN13, validateCards } from "./cards";
+import {
+  completeEAN13,
+  type DiscountCard,
+  isValidEAN13,
+  validateCards,
+} from "./cards";
 import { getStorePreset, STORE_PRESETS } from "./stores";
 
 const exampleCard: DiscountCard = {
@@ -79,11 +84,23 @@ describe("card validation", () => {
       validateCards([{ ...exampleCard, format: "unknown" }]),
     ).toThrow();
     expect(() => validateCards([{ ...exampleCard, number: 123 }])).toThrow();
+    expect(() => validateCards([{ ...exampleCard, favorite: 0 }])).toThrow();
+    expect(() =>
+      validateCards([{ ...exampleCard, createdAt: "not-a-date" }]),
+    ).toThrow("Некорректная дата");
+    expect(() => validateCards({ 0: exampleCard })).toThrow();
+    expect(() => validateCards([null])).toThrow("Некорректные данные карты");
   });
   it("checks EAN13 checksum and rejects unsupported CODE128 characters", () => {
     expect(isValidEAN13("4006381333931")).toBe(true);
     expect(isValidEAN13("4006381333932")).toBe(false);
     expect(isValidEAN13("400638133393")).toBe(false);
+    expect(completeEAN13("400638133393")).toBe("4006381333931");
+    expect(
+      validateCards([
+        { ...exampleCard, format: "EAN13", number: "400638133393" },
+      ])[0].number,
+    ).toBe("4006381333931");
     expect(() => validateCards([{ ...exampleCard, number: "Текст" }])).toThrow(
       "CODE128",
     );

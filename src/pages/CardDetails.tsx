@@ -1,4 +1,5 @@
-import { Button, Text } from "@gravity-ui/uikit";
+import { Copy, Pencil, Star, StarFill, TrashBin } from "@gravity-ui/icons";
+import { Button, Icon, Text } from "@gravity-ui/uikit";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { Barcode } from "../components/Barcode";
@@ -44,7 +45,7 @@ export function CardDetails({ card }: { card: DiscountCard }) {
           disabled={busy}
           onClick={() => void favorite(card)}
         >
-          {card.favorite ? "★" : "☆"}
+          <Icon data={card.favorite ? StarFill : Star} size={18} />
         </button>
       </div>
       <div className={styles["barcode-preview"]}>
@@ -64,22 +65,19 @@ export function CardDetails({ card }: { card: DiscountCard }) {
         aria-label={t("pages.wallet.copy-label")}
       >
         {card.number}
-        <span>⧉</span>
+        <Icon data={Copy} size={16} />
       </Text>
-      <Button view="action" size="xl" width="max" onClick={() => open()}>
-        {t("pages.wallet.checkout")}{" "}
-        <span className={styles["button-arrow"]}>↗</span>
-      </Button>
       <div className={styles["detail-actions"]}>
         <Button view="flat" size="m" onClick={() => void copy(card.number)}>
+          <Icon data={Copy} size={16} />
           {t("pages.wallet.copy")}
         </Button>
-        <span>·</span>
         <Button view="flat" size="m" onClick={() => open("/edit")}>
+          <Icon data={Pencil} size={16} />
           {t("pages.wallet.edit")}
         </Button>
-        <span>·</span>
         <Button view="flat-danger" size="m" onClick={() => open("/delete")}>
+          <Icon data={TrashBin} size={16} />
           {t("pages.wallet.delete")}
         </Button>
       </div>

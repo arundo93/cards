@@ -64,7 +64,6 @@ PWA включена в production-сборке (`npm run preview`), а не в 
 
 - [Desktop](https://www.figma.com/design/dpeIWAVyfUtsdcMwJvH041/discount-cards-app?node-id=9-7491)
 - [Мобильный кошелёк](https://www.figma.com/design/dpeIWAVyfUtsdcMwJvH041/discount-cards-app?node-id=9-7551)
-- [Экран кода](https://www.figma.com/design/dpeIWAVyfUtsdcMwJvH041/discount-cards-app?node-id=9-7600)
 - [Добавление карты](https://www.figma.com/design/dpeIWAVyfUtsdcMwJvH041/discount-cards-app?node-id=9-7716)
 - [Хранение и настройки](https://www.figma.com/design/dpeIWAVyfUtsdcMwJvH041/discount-cards-app?node-id=16-63)
 
@@ -80,7 +79,7 @@ PWA включена в production-сборке (`npm run preview`), а не в 
 
 ## Маршруты и локализация
 
-React Router использует hash-маршруты: `#/` — кошелёк, `#/settings` — хранение, `#/cards/new` — добавление, `#/cards/:id` — показ кода, `#/cards/:id/edit` — редактирование, `#/cards/:id/delete` — подтверждение удаления. Навигация поддерживает Back/Forward. При прямом открытии диалога сначала загружаются карты. Неизвестный путь или отсутствующая карта показывает понятное состояние. Hash не отправляется серверу, поэтому маршруты работают на статическом хостинге и в подпапке без серверных rewrites. Офлайн доступен после первого успешного кэширования production-сборки.
+React Router использует hash-маршруты: `#/` — кошелёк с кодом выбранной карты, `#/settings` — хранение, `#/cards/new` — добавление, `#/cards/:id/edit` — редактирование, `#/cards/:id/delete` — подтверждение удаления. Навигация поддерживает Back/Forward. При прямом открытии диалога сначала загружаются карты. Неизвестный путь или отсутствующая карта показывает понятное состояние. Hash не отправляется серверу, поэтому маршруты работают на статическом хостинге и в подпапке без серверных rewrites. Офлайн доступен после первого успешного кэширования production-сборки.
 
 `createAppI18n(locale)` создаёт синхронно готовый экземпляр i18next; `appI18n` — общий экземпляр приложения. Сейчас поддерживается `ru`, `ru-RU` нормализуется до `ru`; неизвестные локали используют русский fallback. React получает экземпляр через `I18nextProvider`. Все тексты находятся в едином плоском объекте `translations` в `src/i18n/translations.ts`, без сети. Ключи содержат только маленькие латинские буквы, цифры, точки и дефисы (например, `pages.wallet.add-favorite`). Точки — часть ключа (`keySeparator: false`), разделитель плюрализации — дефис (`pluralSeparator: "-"`). Плюральные ключи используют JSON v4 (`-one`, `-few`, `-many`, `-other`) и правила Intl/CLDR; вызов `t('common.cards', {count: 21})` возвращает «21 карта». Для форматирования доступны стандартные Intl formatter-функции i18next. Интерполяцию экранирует React, HTML из переводов не вставляется.
 

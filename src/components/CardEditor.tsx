@@ -1,4 +1,5 @@
-import { Button, Text, TextArea, TextInput } from "@gravity-ui/uikit";
+import { Check } from "@gravity-ui/icons";
+import { Button, Icon, Text, TextArea, TextInput } from "@gravity-ui/uikit";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
@@ -259,7 +260,7 @@ export function CardEditor({
               onClick={() => setColor(value)}
               disabled={busy}
             >
-              {color === value ? "✓" : ""}
+              {color === value ? <Icon data={Check} size={16} /> : null}
             </button>
           ))}
         </fieldset>

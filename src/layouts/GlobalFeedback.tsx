@@ -1,4 +1,5 @@
-import { Button, Text } from "@gravity-ui/uikit";
+import { Xmark } from "@gravity-ui/icons";
+import { Button, Icon, Text } from "@gravity-ui/uikit";
 import { useTranslation } from "react-i18next";
 import { Dialog } from "../components/Dialog";
 import { usePwa } from "../context/PwaContext";
@@ -52,7 +53,7 @@ export function GlobalFeedback() {
             onClick={() => notify("")}
             aria-label={t("pages.state.close-notice")}
           >
-            ✕
+            <Icon data={Xmark} size={16} />
           </button>
         </div>
       )}

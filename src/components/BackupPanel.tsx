@@ -1,4 +1,5 @@
-import { Button, Text, TextInput } from "@gravity-ui/uikit";
+import { ArrowDownToLine, ShieldCheck } from "@gravity-ui/icons";
+import { Button, Icon, Text, TextInput } from "@gravity-ui/uikit";
 import { useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { exportBackup, importBackup, MAX_BACKUP_BYTES } from "../lib/backup";
@@ -81,7 +82,9 @@ export function BackupPanel({
     <div className={styles["settings-stack"]}>
       {!recovery && (
         <section className={styles["settings-card"]}>
-          <div className={styles["section-icon"]}>↗</div>
+          <div className={styles["section-icon"]}>
+            <Icon data={ShieldCheck} size={22} />
+          </div>
           <Text as="h2" variant="header-1">
             {t("components.backup.privacy-title")}
           </Text>
@@ -113,7 +116,9 @@ export function BackupPanel({
         </section>
       )}
       <section className={styles["settings-card"]}>
-        <div className={styles["section-icon"]}>↓</div>
+        <div className={styles["section-icon"]}>
+          <Icon data={ArrowDownToLine} size={22} />
+        </div>
         <Text as="h2" variant="header-1">
           {t("components.backup.title")}
         </Text>

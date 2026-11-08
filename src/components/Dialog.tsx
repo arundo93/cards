@@ -1,6 +1,5 @@
-import { Text } from "@gravity-ui/uikit";
-import { type ReactNode, useEffect, useRef } from "react";
-import { useTranslation } from "react-i18next";
+import { Dialog as GravityDialog, Sheet, useMobile } from "@gravity-ui/uikit";
+import type { ReactNode } from "react";
 import styles from "./Dialog.module.css";
 export function Dialog({
   title,
@@ -13,55 +12,40 @@ export function Dialog({
   children: ReactNode;
   wide?: boolean;
 }) {
-  const { t } = useTranslation();
-  const ref = useRef<HTMLDialogElement>(null);
-  useEffect(() => {
-    const dialog = ref.current;
-    dialog?.showModal();
-    return () => dialog?.close();
-  }, []);
+  const mobile = useMobile();
+  if (mobile) {
+    return (
+      <Sheet
+        open
+        title={title}
+        id="discount-cards-dialog"
+        className={styles.sheet}
+        contentClassName={styles["sheet-content"]}
+        maxContentHeightCoefficient={0.96}
+        allowHideOnContentScroll
+        onOpenChange={(open) => {
+          if (!open) onClose();
+        }}
+      >
+        {children}
+      </Sheet>
+    );
+  }
   return (
-    <dialog
-      ref={ref}
-      className={`${styles.dialog} ${wide ? styles["dialog-wide"] : ""}`}
-      onCancel={(event) => {
-        event.preventDefault();
-        onClose();
+    <GravityDialog
+      open
+      maxWidth={wide ? "m" : "s"}
+      fullWidth
+      contentOverflow="auto"
+      className={styles.dialog}
+      onOpenChange={(open) => {
+        if (!open) onClose();
       }}
-      onKeyDown={(e) => {
-        if (e.key === "Escape") {
-          e.preventDefault();
-          onClose();
-        }
-      }}
-      onClick={(e) => {
-        if (e.target === e.currentTarget) {
-          const r = e.currentTarget.getBoundingClientRect();
-          if (
-            e.clientX < r.left ||
-            e.clientX > r.right ||
-            e.clientY < r.top ||
-            e.clientY > r.bottom
-          )
-            onClose();
-        }
-      }}
-      aria-label={title}
     >
-      <div className={styles["dialog-heading"]}>
-        <Text as="h2" variant="header-2">
-          {title}
-        </Text>
-        <button
-          type="button"
-          className={styles["icon-button"]}
-          onClick={onClose}
-          aria-label={t("common.close")}
-        >
-          ✕
-        </button>
-      </div>
-      {children}
-    </dialog>
+      <GravityDialog.Header caption={title} />
+      <GravityDialog.Body className={styles["dialog-body"]}>
+        {children}
+      </GravityDialog.Body>
+    </GravityDialog>
   );
 }

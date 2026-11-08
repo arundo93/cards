@@ -1,4 +1,5 @@
-import { Button, Text } from "@gravity-ui/uikit";
+import { ArrowUpRightFromSquare } from "@gravity-ui/icons";
+import { Button, Icon, Text } from "@gravity-ui/uikit";
 import { useTranslation } from "react-i18next";
 import { BackupPanel } from "../components/BackupPanel";
 import { usePwa } from "../context/PwaContext";
@@ -17,7 +18,8 @@ export function SettingsPage() {
       />
       <div className={styles["settings-install"]}>
         <Button size="l" view="outlined" onClick={() => void installApp()}>
-          {t("pages.shell.install")} ↗
+          {t("pages.shell.install")}{" "}
+          <Icon data={ArrowUpRightFromSquare} size={16} />
         </Button>
         <Text as="span" variant="caption-2">
           {t("pages.settings.shortcut")}
