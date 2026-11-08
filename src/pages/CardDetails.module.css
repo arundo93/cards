@@ -1,67 +1,24 @@
 .card-details {
-  width: 350px;
+  width: 420px;
   max-width: 100%;
   margin: 0 auto 38px;
   background: var(--dc-color-surface);
   border: 1px solid #e6e7dd;
   border-radius: 18px;
-  padding: 22px 26px 15px;
+  padding: 12px 18px 14px;
   box-shadow: 0 5px 15px #30382303;
 }
 
-.card-meta {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.category-label {
-  display: block;
-  font-size: var(--g-text-caption-1-font-size);
-  color: var(--g-color-text-hint);
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  margin-bottom: 7px;
-}
-
-.card-meta > div {
-  min-width: 0;
-}
-
-.card-meta h2 {
-  overflow-wrap: anywhere;
-  font-size: 19px;
-  letter-spacing: -0.4px;
-  font-weight: var(--g-text-header-font-weight);
-  margin: 0;
-}
-
-.favorite-button {
-  flex-shrink: 0;
-  border: 1px solid var(--dc-color-border);
-  background: none;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  color: var(--g-color-text-hint);
-  font-size: var(--g-text-header-1-font-size);
-}
-
-.favorite-button.is-favorite {
-  color: #b78831;
-  background: #faf4e8;
-}
-
 .barcode-preview {
-  padding: 16px 5px 0;
-  min-height: 100px;
+  padding: 0;
+  min-height: 112px;
 }
 
 .copy-number {
   display: block;
   max-width: 100%;
   overflow-wrap: anywhere;
-  margin: 6px auto 19px;
+  margin: 4px auto 8px;
   border: 0;
   background: none;
   font-size: var(--g-text-body-1-font-size);
@@ -70,14 +27,10 @@
   user-select: text;
 }
 
-.copy-number span {
+.copy-number svg {
   margin-left: 12px;
   letter-spacing: 0;
   color: #9da393;
-}
-
-.button-arrow {
-  padding-left: 18px;
 }
 
 .detail-actions {
@@ -86,7 +39,7 @@
   align-items: center;
   gap: 0;
   --g-button-font-size: 10px;
-  margin-top: 9px;
+  margin-top: 2px;
   flex-wrap: wrap;
 }
 
@@ -109,16 +62,17 @@
 @media (max-width: 800px) {
   .card-details {
     margin-top: 0;
-    width: 330px;
+    width: 390px;
   }
 }
 
 @media (max-width: 600px) {
   .barcode-preview {
-    min-height: 80px;
+    min-height: 100px;
   }
 
   .card-details {
-    padding-top: 18px;
+    width: 100%;
+    padding: 10px 12px 12px;
   }
 }

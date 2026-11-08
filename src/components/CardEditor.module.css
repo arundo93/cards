@@ -50,6 +50,9 @@
   width: 32px;
   color: white;
   font-size: var(--g-text-body-2-font-size);
+  display: grid;
+  place-items: center;
+  padding: 0;
 }
 
 .color-picker button.selected {

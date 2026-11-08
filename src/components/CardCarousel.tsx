@@ -1,4 +1,10 @@
-import { ChevronLeft, ChevronRight, QrCode, StarFill } from "@gravity-ui/icons";
+import {
+  ChevronLeft,
+  ChevronRight,
+  QrCode,
+  Star,
+  StarFill,
+} from "@gravity-ui/icons";
 import { Icon, Text } from "@gravity-ui/uikit";
 import {
   type CSSProperties,
@@ -20,6 +26,8 @@ interface CardCarouselProps {
   activeId: string | null;
   onSelect: (id: string) => void;
   onOpen: (card: DiscountCard) => void;
+  onFavorite: (card: DiscountCard) => void;
+  favoriteDisabled?: boolean;
 }
 
 function cardInk(color: string) {
@@ -42,6 +50,8 @@ function CarouselTrack({
   activeId,
   onSelect,
   onOpen,
+  onFavorite,
+  favoriteDisabled,
 }: CardCarouselProps) {
   const { t, i18n } = useTranslation();
   const positionNumber = new Intl.NumberFormat(i18n.resolvedLanguage, {
@@ -185,6 +195,40 @@ function CarouselTrack({
       aria-label={t("components.carousel.label")}
       aria-roledescription={t("components.carousel.role")}
     >
+      <div className={styles["dc-carousel__navigation"]}>
+        <button
+          type="button"
+          className={styles["dc-carousel__arrow"]}
+          disabled={cards.length < 2}
+          onClick={() => move(-1)}
+          onKeyDown={handleKey}
+          aria-label={t("components.carousel.previous")}
+        >
+          <Icon data={ChevronLeft} size={18} />
+        </button>
+        <Text
+          as="span"
+          variant="inherit"
+          className={styles["dc-carousel__position"]}
+          aria-live="polite"
+          aria-atomic="true"
+        >
+          <strong>{positionNumber.format(index + 1)}</strong>
+          <span>/</span>
+          {positionNumber.format(cards.length)}
+          <span className={styles["dc-sr-only"]}> — {active.name}</span>
+        </Text>
+        <button
+          type="button"
+          className={styles["dc-carousel__arrow"]}
+          disabled={cards.length < 2}
+          onClick={() => move(1)}
+          onKeyDown={handleKey}
+          aria-label={t("components.carousel.next")}
+        >
+          <Icon data={ChevronRight} size={18} />
+        </button>
+      </div>
       <div
         ref={stage}
         className={`${styles["dc-carousel__stage"]} ${motion.direction ? styles["dc-carousel__stage--moving"] : ""} ${cards.length < 3 ? styles["dc-carousel__stage--single"] : ""}`}
@@ -248,14 +292,6 @@ function CarouselTrack({
                   {categoryLabel(card.category, t) ||
                     t("components.carousel.loyalty-card")}
                 </Text>
-                {card.favorite && (
-                  <span
-                    className={styles["dc-card__favorite"]}
-                    aria-hidden="true"
-                  >
-                    <Icon data={StarFill} size={18} />
-                  </span>
-                )}
               </span>
               <Text
                 as="span"
@@ -283,41 +319,20 @@ function CarouselTrack({
             </button>
           ),
         )}
-      </div>
-      <div className={styles["dc-carousel__navigation"]}>
         <button
           type="button"
-          className={styles["dc-carousel__arrow"]}
-          disabled={cards.length < 2}
-          onClick={() => move(-1)}
-          onKeyDown={handleKey}
-          aria-label={t("components.carousel.previous")}
+          className={`${styles["dc-carousel__favorite"]} ${active.favorite ? styles["is-favorite"] : ""}`}
+          aria-label={t(
+            active.favorite
+              ? "pages.wallet.remove-favorite"
+              : "pages.wallet.add-favorite",
+          )}
+          aria-pressed={active.favorite}
+          disabled={favoriteDisabled || Boolean(motion.direction)}
+          style={{ "--favorite-ink": cardInk(active.color) } as CSSProperties}
+          onClick={() => onFavorite(active)}
         >
-          <Icon data={ChevronLeft} size={20} />
-        </button>
-        <Text
-          as="span"
-          variant="inherit"
-          className={styles["dc-carousel__position"]}
-          aria-live="polite"
-          aria-atomic="true"
-        >
-          <Text as="strong" variant="inherit">
-            {positionNumber.format(index + 1)}
-          </Text>
-          <span>/</span>
-          {positionNumber.format(cards.length)}
-          <span className={styles["dc-sr-only"]}> — {active.name}</span>
-        </Text>
-        <button
-          type="button"
-          className={styles["dc-carousel__arrow"]}
-          disabled={cards.length < 2}
-          onClick={() => move(1)}
-          onKeyDown={handleKey}
-          aria-label={t("components.carousel.next")}
-        >
-          <Icon data={ChevronRight} size={20} />
+          <Icon data={active.favorite ? StarFill : Star} size={18} />
         </button>
       </div>
     </section>

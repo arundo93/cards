@@ -1,9 +1,10 @@
-import { Check } from "@gravity-ui/icons";
+import { CheckShapeFill } from "@gravity-ui/icons";
 import { Button, Icon, Text, TextArea, TextInput } from "@gravity-ui/uikit";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
   CARD_CATEGORIES,
+  CARD_COLORS,
   type DiscountCard,
   MAX_CARD_NUMBER_LENGTH,
   validateCard,
@@ -15,14 +16,6 @@ import { Barcode } from "./Barcode";
 import styles from "./CardEditor.module.css";
 import { Dialog } from "./Dialog";
 
-const colors = [
-  "#304d43",
-  "#242e42",
-  "#a64838",
-  "#71577b",
-  "#9a7036",
-  "#235b73",
-];
 export function CardEditor({
   card,
   onClose,
@@ -42,13 +35,18 @@ export function CardEditor({
   const [format, setFormat] = useState<DiscountCard["format"]>(
     card?.format ?? "CODE128",
   );
-  const [color, setColor] = useState(card?.color ?? colors[0]);
+  const [color, setColor] = useState(card?.color ?? CARD_COLORS[0]);
   const [category, setCategory] = useState(card?.category ?? "Покупки");
   const [notes, setNotes] = useState(card?.notes ?? "");
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
   const preset = mode === "store" ? getStorePreset(storeId) : undefined;
   const selectedFormat = preset?.format ?? format;
+  const isSelectedColor = (value: string) =>
+    value.toLowerCase() === color.toLowerCase();
+  const palette = CARD_COLORS.some(isSelectedColor)
+    ? CARD_COLORS
+    : [...CARD_COLORS, color];
   function selectStore(id: string) {
     setStoreId(id);
     setError("");
@@ -249,18 +247,20 @@ export function CardEditor({
           <Text as="legend" variant="body-1">
             {t("editor.color")}
           </Text>
-          {[...new Set([color, ...colors])].map((value) => (
+          {palette.map((value) => (
             <button
               type="button"
               key={value}
               aria-label={t("editor.color-option", { color: value })}
-              aria-pressed={color === value}
+              aria-pressed={isSelectedColor(value)}
               style={{ background: value }}
-              className={color === value ? styles.selected : ""}
+              className={isSelectedColor(value) ? styles.selected : ""}
               onClick={() => setColor(value)}
               disabled={busy}
             >
-              {color === value ? <Icon data={Check} size={16} /> : null}
+              {isSelectedColor(value) ? (
+                <Icon data={CheckShapeFill} size={17} />
+              ) : null}
             </button>
           ))}
         </fieldset>

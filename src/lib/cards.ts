@@ -25,12 +25,20 @@ export interface DiscountCard {
 export const MAX_CODE128_LENGTH = 80;
 export const MAX_QR_BYTES = 2000;
 export const CARD_COLORS = [
-  "#566C50",
-  "#B66A4E",
-  "#65738D",
-  "#9A6B83",
-  "#B49455",
-  "#424B50",
+  "#304D43",
+  "#24324A",
+  "#A64838",
+  "#71577B",
+  "#9A641F",
+  "#235B73",
+  "#3F4E8C",
+  "#8A3D5D",
+  "#386D55",
+  "#315F9A",
+  "#653E68",
+  "#4B5358",
+  "#7A4933",
+  "#49633D",
 ];
 export const CARD_CATEGORIES = [
   "Покупки",
