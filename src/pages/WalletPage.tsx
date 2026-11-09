@@ -31,7 +31,6 @@ export function WalletPage() {
     <>
       <PageTitle
         title={t("pages.wallet.title")}
-        subtitle={t("pages.wallet.subtitle")}
         action={
           <Button
             view="action"

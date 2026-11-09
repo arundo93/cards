@@ -6,20 +6,16 @@
   padding: 48px 0 36px;
 }
 
-.eyebrow {
-  font-size: var(--g-text-caption-1-font-size);
-  letter-spacing: 1.8px;
-  color: var(--g-color-text-hint);
-  font-weight: 650;
-  margin-bottom: 14px;
-}
-
 .page-title h1 {
   font-size: var(--g-text-display-3-font-size);
   line-height: 1.15;
   letter-spacing: -1.6px;
   font-weight: var(--g-text-display-font-weight);
   margin-bottom: 13px;
+}
+
+.page-title h1:last-child {
+  margin-bottom: 0;
 }
 
 .title-dot {
@@ -48,14 +44,7 @@
     line-height: 1.7;
   }
 
-  .page-title .eyebrow {
-    font-size: 8px;
-    letter-spacing: 1.2px;
-    margin-bottom: 10px;
-  }
-
   .page-title > :global(.g-button) {
-    margin-top: 28px;
     --g-button-font-size: 12px;
     --g-button-padding: 12px;
   }
@@ -65,10 +54,6 @@
   .page-title {
     flex-wrap: wrap;
     gap: 16px;
-  }
-
-  .page-title > :global(.g-button) {
-    margin-top: 0;
   }
 }
 
